@@ -69,12 +69,16 @@ function fetchGitHubInformation(event) {
             if (errorResponse.status === 404) { //if the response has a 404 status, we'll desplay the the H2 in the html
                 $("#gh-user-data").html(
                     `<h2>No info found for user ${username}</h2>`);
-            } else {
-                console.log(errorResponse);
-                $("#gh-user-data").html(
-                    `<h2>Error: ${errorResponse.responseJSON.message}</h2>`);
-            }
-        });
-}
+                } else if (errorResponse.status === 403) {
+                    var resetTime = new Date(errorResponse.getResponseHeader('X-RateLimit-Reset') * 1000);
+                    $("#gh-user-data").html(`<h4>Too many requests, please wait until ${resetTime.toLocaleTimeString()}</h4>`);
+                    // .toLocalTimeString() set the time to your timezone 
+                } else {
+                    console.log(errorResponse);
+                    $("#gh-user-data").html(
+                        `<h2>Error: ${errorResponse.responseJSON.message}</h2>`);
+                }
+            });
+    }
 
 $(document).ready(fetchGitHubInformation);
