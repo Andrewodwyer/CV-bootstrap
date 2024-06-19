@@ -11,7 +11,9 @@
     <link rel="stylesheet" href="assets/css/style.css" type="text/css" />
     
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    
     <script type="text/javascript" src="assets/js/github-information.js"></script>
+
     <title>Rosie</title>
 </head>
 
@@ -31,22 +33,22 @@
                 <div class="row no-gutters">
                     <div class="col">
                         <ul id="nav" class="list-inline menucontainer row">
-                            <li class="col-6 col-sm-2 ui-menu-color-home list-inline-item menuitem">
+                            <li class="col-xs-6 col-sm-2 ui-menu-color-home menuitem">
                                 <a href="index.html" class="hvr-sweep-to-bottom"><i class="fa fa-home" aria-hidden="true"></i><span>Home</span></a>
                             </li>
-                            <li class="col-6 col-sm-2 ui-menu-color-resume list-inline-item menuitem">
+                            <li class="col-xs-6 col-sm-2 ui-menu-color-resume menuitem">
                                 <a href="resume.html" class="hvr-sweep-to-bottom"><i class="fa fa-graduation-cap" aria-hidden="true"></i><span>Resume</span></a>
                             </li>
-                            <li class="col-6 col-sm-2 ui-menu-color-contact list-inline-item menuitem">
-                                <a href="contact.html" class="hvr-sweep-to-bottom"><i class="fa fa-comment-o" aria-hidden="true"></i><span>Contact</span></a>
+                            <li class="col-xs-6 col-sm-2 ui-menu-color-contact menuitem">
+                                <a href="contact.html" class="hvr-sweep-to-bottom"><i class=" fa fa-commenting-o" aria-hidden="true"></i><span>Contact</span></a>
                             </li>
-                            <li class="col-6 col-sm-2 ui-menu-color-interests list-inline-item menuitem">
+                            <li class="col-xs-6 col-sm-2 ui-menu-color-interests menuitem">
                                 <a href="interests.html" class="hvr-sweep-to-bottom"><i class="fa fa-users" aria-hidden="true"></i><span>Interests</span></a>
                             </li>
-                            <li class="col-6 col-sm-2 ui-menu-color-github list-inline-item menuitem">
+                            <li class="col-xs-6 col-sm-2 ui-menu-color-github menuitem">
                                 <a href="github.html" class="hvr-sweep-to-bottom"><i class="fa fa-github" aria-hidden="true"></i><span>GitHub</span></a>
                             </li>
-                            <li class="col-6 col-sm-2 ui-menu-color-download list-inline-item menuitem">
+                            <li class="col-xs-6 col-sm-2 ui-menu-color-download menuitem">
                                 <a href="assets/cv/sample-cv.pdf" target="_blank" class="hvr-sweep-to-bottom"><i class="fa fa-download" aria-hidden="true"></i><span>Download CV</span></a>
                             </li>
                         </ul>
@@ -61,9 +63,9 @@
             <div class="col">
                 <h3 class="contact-heading uppercase text-center">View My GitHub Projects</h3>
                 <h5 class="uppercase text-center">You can also search on other user profiles</h5>
-
+                
                 <div class="center-form">
-                    <input type="text" id="gh-username" value="octocat" oninput="fetchGitHubInformation()" />
+                    <input type="text" id="gh-username" value="octocat" oninput="fetchGitHubInformation()" /> <!-- oninput calls a function -->
                     <div id="gh-user-data"></div>
                     <div id="gh-repo-data"></div>
 
