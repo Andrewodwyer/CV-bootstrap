@@ -41,6 +41,9 @@ function repoInformationHTML(repos) { // repos, the object returned from the git
 
 function fetchGitHubInformation(event) {
 
+    $("#gh-user-data").html(""); // setting them to an empty string, has the effect of emptying them
+    $("#gh-repo-data").html("");
+
     var username = $("#gh-username").val(); //use jquary to select the id and the value in that text field
     if (!username) { // if the field is empty, no value, this div will appear
         $("#gh-user-data").html(`<h2>Please enter a GitHub username</h2>`);
@@ -73,3 +76,5 @@ function fetchGitHubInformation(event) {
             }
         });
 }
+
+$(document).ready(fetchGitHubInformation);
