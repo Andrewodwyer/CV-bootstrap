@@ -17,6 +17,27 @@ function userInformationHTML(user) { // user is the object returned from the git
         </div>`;
 }
 
+function repoInformationHTML(repos) { // repos, the object returned from the github API
+    if (repos.length == 0) { // if there is no repos, repos = 0
+        return `<div class="clearfix repo-list">No repos!</div>`;
+    }
+
+    var listItemsHTML = repos.map(function(repo) { // .map method, this method works like a forEach, returing an array with the results
+        return `<li>
+                    <a href="${repo.html_url}" target="_blank">${repo.name}</a>
+                </li>`; //target blank to open on a new page
+    });
+
+    return `<div class="clearfix repo-list">
+                <p>
+                    <strong>Repo List:</strong>
+                </p>
+                <ul>
+                    ${listItemsHTML.join("\n")}
+                </ul>
+            </div>`; // .join("\n") joins everything in the array to a new line /n
+}
+
 
 function fetchGitHubInformation(event) {
 
@@ -32,11 +53,14 @@ function fetchGitHubInformation(event) {
         </div>`);
 // when then promise. .when takes a function as it first argument. in .when, we pass in a function that is getJSON
     $.when(
-        $.getJSON(`https://api.github.com/users/${username}`) //the value we optioaned from the user box
+        $.getJSON(`https://api.github.com/users/${username}`), //the value we optioaned from the user box
+        $.getJSON(`https://api.github.com/users/${username}/repos`) // this will list the repos for that individual user
     ).then(
-        function(response) { // the response is what came back from the .when, the getJSON function
-            var userData = response;
+        function(firstResponse, secondResponse) { // the response is what came back from the .when, the getJSON function
+            var userData = firstResponse[0];
+            var repoData = secondResponse[0];
             $("#gh-user-data").html(userInformationHTML(userData)); // response is stored in userData var and userData will be used as a argument in userInformationHTML function
+            $("#gh-repo-data").html(repoInformationHTML(repoData));
         },
         function(errorResponse) {
             if (errorResponse.status === 404) { //if the response has a 404 status, we'll desplay the the H2 in the html
